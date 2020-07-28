@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #div1 {
+        width: 450px;
+        height: 180px;
+        padding: 10px;
+      }
+    </style>
+    <script>
+      function preventdefault(ev) {
+        ev.preventDefault();
+      }
+
+      function dragCat(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+      }
+
+      function dropCat(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="div1" ondrop="dropCat(event)" ondragover="preventdefault(event)">
+      Drop here
+    </div>
+    <br />
+    <img
+      id="drag1"
+      src="cat.webp"
+      draggable="true"
+      ondragstart="dragCat(event)"
+      width="236"
+      height="169"
+    />
+  </body>
+</html>
